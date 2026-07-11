@@ -1,0 +1,11 @@
+Securities-Market-TechSprint/
+├── LICENSE
+├── README.md
+├── PROJECT_EXPLAINER.md
+├── index.html                          ← Main Project Explainer Website
+├── project-explainer.html              ← Old version
+│
+├── images/
+│   └── stealthauth-proposal.png        ← Professional Architecture Diagram
+│
+└── .git/                               ← Git repository folder (ignore)
