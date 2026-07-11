@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecuAuth AI • Complete Project Explainer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root { --primary: #00f5ff; }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.75;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 50px 40px;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: #111;
+            border-bottom: 1px solid #222;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .nav-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            background: #1a1a1a;
+            color: #00f5ff;
+            border: 1px solid #333;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            background: #00f5ff;
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-top: 40px;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00f5ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -2.5px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #00f5ff;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        
+        .section {
+            margin-bottom: 95px;
+            scroll-margin-top: 80px;
+        }
+        
+        h2 {
+            font-size: 2.35rem;
+            margin-bottom: 22px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .section-number {
+            background: #1a1a1a;
+            color: #00f5ff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .diagram-container {
+            background: #111;
+            border-radius: 20px;
+            padding: 32px;
+            margin: 35px 0;
+            border: 1px solid #222;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            transition: all 0.4s ease;
+        }
+        
+        .diagram-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 90px rgba(0, 245, 255, 0.15);
+        }
+        
+        .diagram-container img {
+            width: 100%;
+            border-radius: 16px;
+            transition: transform 0.4s ease;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .card {
+            background: #111;
+            border-radius: 20px;
+            padding: 38px;
+            border: 1px solid #222;
+            transition: all 0.4s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #333;
+        }
+        
+        .tech-badge {
+            background: #1f1f1f;
+            color: #00f5ff;
+            padding: 7px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            margin-top: 35px;
+        }
+        
+        .flow-card {
+            background: #111;
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-card:hover {
+            transform: translateY(-6px);
+        }
+        
+        .step-number {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, #00f5ff, #7b2cbf);
+            color: #000;
+            font-weight: 800;
+            font-size: 1.35rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #111;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-top: 28px;
+        }
+        
+        th, td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+        
+        th {
+            background: #1a1a1a;
+            color: #00f5ff;
+        }
+        
+        .highlight {
+            background: #1a1a1a;
+            padding: 3px 12px;
+            border-radius: 7px;
+            font-family: monospace;
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 60px;
+            color: #555;
+        }
+        
+        .detail-text {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#section-1" class="nav-btn">1. Overview</a>
+            <a href="#section-2" class="nav-btn">2. Architecture</a>
+            <a href="#section-3" class="nav-btn">3. Problem</a>
+            <a href="#section-4" class="nav-btn">4. Delivery Methods</a>
+            <a href="#section-5" class="nav-btn">5. Working Flow</a>
+            <a href="#section-6" class="nav-btn">6. Decision Matrix</a>
+            <a href="#section-7" class="nav-btn">7. Privacy</a>
+            <a href="#section-8" class="nav-btn">8. Advantages</a>
+            <a href="#section-9" class="nav-btn">9. MVP Plan</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <div class="badge">SEBI TechSprint 2026 • Problem Statement 1</div>
+            <h1 class="logo">SecuAuth AI</h1>
+            <p style="font-size: 1.45rem; color: #888; max-width: 720px; margin: 0 auto;">
+                Complete Project Structure &amp; Detailed Explainer
+            </p>
+        </header>
+
+        <!-- Section 1 -->
+        <div id="section-1" class="section">
+            <h2><span class="section-number">1</span> Project Overview</h2>
+            <p class="detail-text" style="max-width: 880px;">
+                SecuAuth AI is a next-generation <strong>invisible continuous authentication layer</strong> designed specifically 
+                for the Indian securities market. It adds a silent biometric + cryptographic verification system that activates 
+                after traditional login (Password + OTP). Even if a hacker steals the user's credentials through advanced phishing 
+                or social engineering, the system verifies that the <strong>real investor is physically present</strong> using the 
+                device's front camera — without showing any extra steps to the legitimate user.
+            </p>
+        </div>
+
+        <!-- Section 2 -->
+        <div id="section-2" class="section">
+            <h2><span class="section-number">2</span> Complete Architecture Diagram</h2>
+            <div class="diagram-container">
+                <img src="images/flow-diagram.png" alt="SecuAuth AI Complete Architecture Flow Diagram">
+            </div>
+            <p style="text-align:center; color:#777; font-size:1.05rem;">
+                The diagram above shows the complete end-to-end flow from user input to threat response.
+            </p>
+        </div>
+
+        <!-- Section 3 -->
+        <div id="section-3" class="section">
+            <h2><span class="section-number">3</span> The Problem We Are Solving</h2>
+            <div class="card">
+                <p class="detail-text">
+                    90%+ of account takeovers in the securities market happen through stolen credentials. 
+                    Even with Two-Factor Authentication (OTP), hackers use real-time phishing kits and man-in-the-middle attacks 
+                    to intercept the OTP. Once the correct OTP is entered on the legitimate platform, the system assumes the user 
+                    is genuine and grants full access. Current biometric solutions (Face ID, fingerprint) are visible, 
+                    platform-dependent, and can be bypassed using backup PINs.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div id="section-4" class="section">
+            <h2><span class="section-number">4</span> Two Delivery Methods</h2>
+            
+            <div class="two-column">
+                <!-- Chrome Extension -->
+                <div class="card">
+                    <div class="tech-badge">FOR WEB PLATFORMS</div>
+                    <h3>Chrome Extension</h3>
+                    <p style="color:#aaa; margin: 18px 0 25px;">For Broker Websites (Zerodha, Groww, Upstox, Angel One, 5Paisa, etc.)</p>
+                    
+                    <strong>How it Works:</strong>
+                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2;">
+                        <li>Runs completely silently in the background</li>
+                        <li>Detects login or high-value transaction attempts</li>
+                        <li>Uses <span class="highlight">MediaPipe Face Mesh</span> for 468 facial landmarks</li>
+                        <li>Generates cryptographic signature using <span class="highlight">WebCrypto API</span></li>
+                        <li>Requires <strong>zero changes</strong> on existing broker websites</li>
+                        <li>Works across Chrome, Edge, and other Chromium browsers</li>
+                    </ul>
+                </div>
+
+                <!-- Mobile SDK -->
+                <div class="card">
+                    <div class="tech-badge">FOR MOBILE APPLICATIONS</div>
+                    <h3>Security SDK</h3>
+                    <p style="color:#aaa; margin: 18px 0 25px;">For Broker Mobile Apps (Android &amp; iOS)</p>
+                    
+                    <strong>How it Works:</strong>
+                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2;">
+                        <li>Lightweight SDK that developers can easily integrate</li>
+                        <li>Uses device Secure Enclave / Android Keystore</li>
+                        <li>Native camera + advanced liveness detection</li>
+                        <li>Simple developer APIs: <code>startSilentAuth()</code>, <code>verifyLiveness()</code></li>
+                        <li>Works even when the app is in background</li>
+                        <li>Minimal impact on battery and performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div id="section-5" class="section">
+            <h2><span class="section-number">5</span> Step-by-Step Working Flow</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <div class="step-number">01</div>
+                    <h4>User Enters Credentials</h4>
+                    <p style="color:#aaa;">User enters Password + OTP normally on the broker platform.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">02</div>
+                    <h4>Silent Edge Scan Triggers</h4>
+                    <p style="color:#aaa;">While the page shows "Processing your request...", the front camera activates silently and captures facial landmarks using MediaPipe.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">03</div>
+                    <h4>Private Key Signature</h4>
+                    <p style="color:#aaa;">Facial landmarks are converted into a cryptographic signature using the device's private key stored in Secure Enclave / WebCrypto.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">04</div>
+                    <h4>Backend Verification</h4>
+                    <p style="color:#aaa;">The backend fetches the user's registered public key and verifies the signature using ECDSA/RSA-4096. No biometric data is ever sent to the server.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">05</div>
+                    <h4>Decision Matrix</h4>
+                    <p style="color:#aaa;">MATCH → Access Granted<br>MISMATCH → Intruder Alert + Photo Capture</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div id="section-6" class="section">
+            <h2><span class="section-number">6</span> Backend Decision Matrix</h2>
+            
+            <table>
+                <tr>
+                    <th>Condition</th>
+                    <th>Action Taken</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td><strong style="color:#22c55e">MATCH</strong></td>
+                    <td>Signature verified + Liveness passed</td>
+                    <td style="color:#22c55e"><strong>Dashboard Access Granted</strong></td>
+                </tr>
+                <tr>
+                    <td><strong style="color:#ef4444">MISMATCH</strong></td>
+                    <td>Deepfake / Wrong person / Hacker detected</td>
+                    <td style="color:#ef4444">
+                        <strong>Session Terminated</strong><br>
+                        Intruder photo captured<br>
+                        Urgent alert sent to real owner's device
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 7 -->
+        <div id="section-7" class="section">
+            <h2><span class="section-number">7</span> Privacy &amp; Security Highlights</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h4>No Biometric Data Sent to Server</h4>
+                    <p style="color:#aaa;">Only cryptographic signatures are transmitted. The actual face image is never sent to any server.</p>
+                </div>
+                <div class="card">
+                    <h4>Keys Stored Locally on Device</h4>
+                    <p style="color:#aaa;">Private keys are stored in Secure Enclave / WebCrypto. The server only stores public keys.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div id="section-8" class="section">
+            <h2><span class="section-number">8</span> Key Advantages</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h4>Zero Friction UX</h4>
+                    <p style="color:#aaa;">Legitimate users experience no extra steps. Security runs completely in the background.</p>
+                </div>
+                <div class="card">
+                    <h4>Proactive Intruder Capture</h4>
+                    <p style="color:#aaa;">Unlike normal blocks, the system captures photographic evidence of the hacker.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div id="section-9" class="section">
+            <h2><span class="section-number">9</span> MVP Development Plan</h2>
+            <div class="card">
+                <p class="detail-text">
+                    For the hackathon and initial demo, we will build:<br><br>
+                    • A mock broker login website<br>
+                    • Chrome Extension with MediaPipe + WebCrypto<br>
+                    • Node.js backend for signature verification<br>
+                    • Live demo showing both successful login and intruder detection
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>SEBI TechSprint 2026 • Zero Friction UX • Privacy-First Design</p>
+        </div>
+
+    </div>
+</body>
+</html>
