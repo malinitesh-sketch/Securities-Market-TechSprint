@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecuAuth AI • Project Explainer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background: #f8fafc;
+            color: #1e2937;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+        
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .nav-btn {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .nav-btn:hover {
+            background: #0ea5e9;
+            color: white;
+            border-color: #0ea5e9;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 70px;
+            padding-top: 30px;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+        
+        .badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 80px;
+            scroll-margin-top: 70px;
+        }
+        
+        h2 {
+            font-size: 2.1rem;
+            margin-bottom: 18px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-number {
+            background: #0ea5e9;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .diagram-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .diagram-container img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .tech-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 25px;
+        }
+        
+        .flow-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        }
+        
+        .step-number {
+            width: 42px;
+            height: 42px;
+            background: #0ea5e9;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        }
+        
+        th, td {
+            padding: 18px 22px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f1f5f9;
+            color: #0ea5e9;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            color: #64748b;
+        }
+        
+        .detail-text {
+            font-size: 1.05rem;
+            color: #475569;
+        }
+        
+        .tech-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#section-1" class="nav-btn">1. Overview</a>
+            <a href="#section-2" class="nav-btn">2. Architecture</a>
+            <a href="#section-3" class="nav-btn">3. Problem</a>
+            <a href="#section-4" class="nav-btn">4. Delivery Methods</a>
+            <a href="#section-5" class="nav-btn">5. Working Flow</a>
+            <a href="#section-6" class="nav-btn">6. Decision Matrix</a>
+            <a href="#section-7" class="nav-btn">7. Privacy</a>
+            <a href="#section-8" class="nav-btn">8. Advantages</a>
+            <a href="#section-9" class="nav-btn">9. Tech Stack</a>
+            <a href="#section-10" class="nav-btn">10. MVP Plan</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <div class="badge">SEBI TechSprint 2026 • Problem Statement 1</div>
+            <h1 class="logo">SecuAuth AI</h1>
+            <p style="font-size: 1.35rem; color: #64748b; max-width: 680px; margin: 0 auto;">
+                Complete Project Structure &amp; Detailed Explainer
+            </p>
+        </header>
+
+        <!-- Section 1: Overview -->
+        <div id="section-1" class="section">
+            <h2><span class="section-number">1</span> Project Overview</h2>
+            <div class="card">
+                <p class="detail-text">
+                    SecuAuth AI is an <strong>invisible continuous authentication layer</strong> designed for the Indian securities market. 
+                    It adds a silent biometric + cryptographic verification system that activates after normal login (Password + OTP). 
+                    Even if a hacker steals the credentials, the system verifies that the <strong>real investor is physically present</strong> 
+                    using the device camera — with zero extra steps for the legitimate user.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 2: Architecture (with new image) -->
+        <div id="section-2" class="section">
+            <h2><span class="section-number">2</span> Architecture &amp; Workflow Diagram</h2>
+            
+            <!-- New Professional Diagram -->
+            <div class="diagram-container">
+                <img src="images/stealthauth-proposal.png" alt="SecuAuth AI Complete Project Proposal Diagram">
+            </div>
+            
+            <div class="card">
+                <p class="detail-text">
+                    <strong>Workflow Explanation:</strong><br>
+                    The diagram shows the complete flow: User enters Password + OTP → Silent camera scan activates → 
+                    Facial landmarks are converted into a cryptographic signature → Backend verifies the signature → 
+                    Final decision (Access granted or Intruder alert). The entire process completes in under 1.5 seconds.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 3: Problem -->
+        <div id="section-3" class="section">
+            <h2><span class="section-number">3</span> The Problem We Are Solving</h2>
+            <div class="card">
+                <p class="detail-text">
+                    90%+ of account takeovers happen through stolen credentials. Even with OTP, hackers use real-time phishing kits 
+                    to intercept the OTP. Once the correct OTP is entered on the legitimate site, the system grants full access. 
+                    Existing biometric solutions (Face ID, fingerprint) are visible and can be bypassed using backup PINs.
+                </p>
+            </div>
+        </div>
+
+        <!-- Section 4: Delivery Methods -->
+        <div id="section-4" class="section">
+            <h2><span class="section-number">4</span> Two Delivery Methods</h2>
+            
+            <div class="two-column">
+                <div class="card">
+                    <div class="tech-badge">WEB</div>
+                    <h3>Chrome Extension</h3>
+                    <p style="color:#475569; margin: 15px 0 20px;">For Broker Websites (Zerodha, Groww, Upstox, etc.)</p>
+                    <ul style="line-height: 2; color:#475569;">
+                        <li>Runs silently in background</li>
+                        <li>Uses MediaPipe Face Mesh + WebCrypto API</li>
+                        <li>Zero changes needed on broker websites</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="tech-badge">MOBILE</div>
+                    <h3>Security SDK</h3>
+                    <p style="color:#475569; margin: 15px 0 20px;">For Broker Mobile Apps</p>
+                    <ul style="line-height: 2; color:#475569;">
+                        <li>Lightweight SDK for Android &amp; iOS</li>
+                        <li>Uses Secure Enclave / Keystore</li>
+                        <li>Simple APIs for developers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Working Flow -->
+        <div id="section-5" class="section">
+            <h2><span class="section-number">5</span> Step-by-Step Working Flow</h2>
+            
+            <div class="flow-grid">
+                <div class="flow-card">
+                    <div class="step-number">01</div>
+                    <h4>User Enters Credentials</h4>
+                    <p style="color:#475569;">User enters Password + OTP normally.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">02</div>
+                    <h4>Silent Camera Scan</h4>
+                    <p style="color:#475569;">Camera activates silently while "Processing..." is shown.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">03</div>
+                    <h4>Signature Generation</h4>
+                    <p style="color:#475569;">Facial data converted into cryptographic signature.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">04</div>
+                    <h4>Backend Verification</h4>
+                    <p style="color:#475569;">Server verifies signature using public key.</p>
+                </div>
+                <div class="flow-card">
+                    <div class="step-number">05</div>
+                    <h4>Final Decision</h4>
+                    <p style="color:#475569;">MATCH → Access Granted<br>MISMATCH → Intruder Alert</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Decision Matrix -->
+        <div id="section-6" class="section">
+            <h2><span class="section-number">6</span> Backend Decision Matrix</h2>
+            <table>
+                <tr>
+                    <th>Condition</th>
+                    <th>Action</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td><strong style="color:#16a34a">MATCH</strong></td>
+                    <td>Signature verified + Liveness passed</td>
+                    <td style="color:#16a34a"><strong>Access Granted</strong></td>
+                </tr>
+                <tr>
+                    <td><strong style="color:#dc2626">MISMATCH</strong></td>
+                    <td>Deepfake or Wrong person detected</td>
+                    <td style="color:#dc2626">
+                        Session Terminated<br>
+                        Intruder photo captured<br>
+                        Alert sent to real owner
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 7: Privacy -->
+        <div id="section-7" class="section">
+            <h2><span class="section-number">7</span> Privacy &amp; Security</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h4>No Biometric Data Sent</h4>
+                    <p style="color:#475569;">Only cryptographic signatures are sent. No face image is transmitted.</p>
+                </div>
+                <div class="card">
+                    <h4>Keys Stored on Device</h4>
+                    <p style="color:#475569;">Private keys stay in Secure Enclave. Server only has public keys.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Advantages -->
+        <div id="section-8" class="section">
+            <h2><span class="section-number">8</span> Key Advantages</h2>
+            <div class="two-column">
+                <div class="card">
+                    <h4>Zero Friction UX</h4>
+                    <p style="color:#475569;">No extra steps for legitimate users. Everything runs in background.</p>
+                </div>
+                <div class="card">
+                    <h4>Intruder Capture</h4>
+                    <p style="color:#475569;">System captures photo evidence of the hacker automatically.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Tech Stack -->
+        <div id="section-9" class="section">
+            <h2><span class="section-number">9</span> Technologies We Will Use</h2>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 20px;">Frontend (Chrome Extension)</h3>
+                <div class="tech-item"><strong>MediaPipe Face Mesh</strong> — Real-time facial landmark detection (468 points)</div>
+                <div class="tech-item"><strong>WebCrypto API</strong> — Cryptographic key generation and signing</div>
+                <div class="tech-item"><strong>Manifest V3</strong> — Modern Chrome Extension framework</div>
+                <div class="tech-item"><strong>Content Scripts</strong> — Inject into broker login pages</div>
+            </div>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 20px;">Mobile SDK</h3>
+                <div class="tech-item"><strong>Android:</strong> Kotlin + MediaPipe + Android Keystore</div>
+                <div class="tech-item"><strong>iOS:</strong> Swift + Vision Framework + Secure Enclave</div>
+            </div>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 20px;">Backend</h3>
+                <div class="tech-item"><strong>Node.js</strong> — Signature verification server</div>
+                <div class="tech-item"><strong>ECDSA / RSA-4096</strong> — Asymmetric cryptography for verification</div>
+                <div class="tech-item"><strong>Express.js</strong> — Lightweight API server</div>
+            </div>
+        </div>
+
+        <!-- Section 10: MVP Plan -->
+        <div id="section-10" class="section">
+            <h2><span class="section-number">10</span> MVP Development Plan</h2>
+            <div class="card">
+                <p class="detail-text">
+                    For the hackathon demo we will build:<br><br>
+                    • Mock broker login website<br>
+                    • Chrome Extension with MediaPipe + WebCrypto<br>
+                    • Node.js backend for signature verification<br>
+                    • Live demo showing both successful login and intruder detection
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>SEBI TechSprint 2026 • Zero Friction • Privacy First</p>
+        </div>
+
+    </div>
+</body>
+</html>
