@@ -7,17 +7,18 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
         
-        :root { --primary: #00f5ff; }
+        :root {
+            --primary: #7dd3fc;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
         
         * { margin:0; padding:0; box-sizing:border-box; }
         
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Inter', system_ui, sans-serif;
-            background: #0a0a0a;
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
             color: #f0f0f0;
             line-height: 1.75;
         }
@@ -28,15 +29,15 @@
             padding: 50px 40px;
         }
         
-        /* Navbar */
+        /* Navbar - Glassmorphism */
         .navbar {
             position: sticky;
             top: 0;
-            background: #111;
-            border-bottom: 1px solid #222;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             z-index: 1000;
-            padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 14px 0;
         }
         
         .nav-content {
@@ -45,26 +46,28 @@
             padding: 0 40px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
         }
         
         .nav-btn {
-            background: #1a1a1a;
-            color: #00f5ff;
-            border: 1px solid #333;
-            padding: 9px 18px;
+            background: rgba(255,255,255,0.06);
+            color: #7dd3fc;
+            border: 1px solid rgba(125, 211, 252, 0.2);
+            padding: 9px 17px;
             border-radius: 30px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
             white-space: nowrap;
+            backdrop-filter: blur(10px);
         }
         
         .nav-btn:hover {
-            background: #00f5ff;
-            color: #000;
+            background: #7dd3fc;
+            color: #0f172a;
+            border-color: #7dd3fc;
             transform: translateY(-2px);
         }
         
@@ -78,7 +81,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 4.8rem;
             font-weight: 700;
-            background: linear-gradient(90deg, #00f5ff, #a855f7);
+            background: linear-gradient(90deg, #7dd3fc, #bae6fd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
@@ -87,11 +90,12 @@
         
         .badge {
             display: inline-block;
-            background: #1a1a1a;
-            color: #00f5ff;
+            background: rgba(125, 211, 252, 0.1);
+            color: #7dd3fc;
             padding: 8px 24px;
             border-radius: 50px;
             font-weight: 600;
+            border: 1px solid rgba(125, 211, 252, 0.2);
             margin-bottom: 25px;
         }
         
@@ -110,8 +114,8 @@
         }
         
         .section-number {
-            background: #1a1a1a;
-            color: #00f5ff;
+            background: rgba(125, 211, 252, 0.15);
+            color: #7dd3fc;
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -121,27 +125,43 @@
             font-size: 1.15rem;
             font-weight: 700;
             flex-shrink: 0;
+            border: 1px solid rgba(125, 211, 252, 0.3);
         }
         
-        .diagram-container {
-            background: #111;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
-            padding: 32px;
-            margin: 35px 0;
-            border: 1px solid #222;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            padding: 38px;
+            backdrop-filter: blur(20px);
             transition: all 0.4s ease;
         }
         
-        .diagram-container:hover {
+        .glass-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 35px 90px rgba(0, 245, 255, 0.15);
+            border-color: rgba(125, 211, 252, 0.3);
+        }
+        
+        .diagram-container {
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            padding: 32px;
+            margin: 35px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(16px);
+        }
+        
+        .diagram-container:hover {
+            transform: translateY(-6px);
         }
         
         .diagram-container img {
             width: 100%;
             border-radius: 16px;
-            transition: transform 0.4s ease;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
         }
         
         .two-column {
@@ -150,27 +170,15 @@
             gap: 40px;
         }
         
-        .card {
-            background: #111;
-            border-radius: 20px;
-            padding: 38px;
-            border: 1px solid #222;
-            transition: all 0.4s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: #333;
-        }
-        
         .tech-badge {
-            background: #1f1f1f;
-            color: #00f5ff;
+            background: rgba(125, 211, 252, 0.15);
+            color: #7dd3fc;
             padding: 7px 18px;
             border-radius: 30px;
             font-size: 0.9rem;
             display: inline-block;
             margin-bottom: 20px;
+            border: 1px solid rgba(125, 211, 252, 0.3);
         }
         
         .flow-grid {
@@ -181,22 +189,24 @@
         }
         
         .flow-card {
-            background: #111;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 18px;
             padding: 28px;
-            border: 1px solid #222;
+            backdrop-filter: blur(16px);
             transition: all 0.3s ease;
         }
         
         .flow-card:hover {
             transform: translateY(-6px);
+            border-color: rgba(125, 211, 252, 0.4);
         }
         
         .step-number {
             width: 46px;
             height: 46px;
-            background: linear-gradient(135deg, #00f5ff, #7b2cbf);
-            color: #000;
+            background: linear-gradient(135deg, #7dd3fc, #bae6fd);
+            color: #0f172a;
             font-weight: 800;
             font-size: 1.35rem;
             border-radius: 50%;
@@ -209,25 +219,26 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #111;
+            background: var(--glass);
             border-radius: 18px;
             overflow: hidden;
             margin-top: 28px;
+            backdrop-filter: blur(16px);
         }
         
         th, td {
             padding: 20px 24px;
             text-align: left;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         th {
-            background: #1a1a1a;
-            color: #00f5ff;
+            background: rgba(125, 211, 252, 0.1);
+            color: #7dd3fc;
         }
         
         .highlight {
-            background: #1a1a1a;
+            background: rgba(125, 211, 252, 0.15);
             padding: 3px 12px;
             border-radius: 7px;
             font-family: monospace;
@@ -236,12 +247,12 @@
         .footer {
             text-align: center;
             padding-top: 60px;
-            color: #555;
+            color: #64748b;
         }
         
         .detail-text {
             font-size: 1.1rem;
-            color: #ccc;
+            color: #cbd5e1;
         }
     </style>
 </head>
@@ -268,7 +279,7 @@
         <header>
             <div class="badge">SEBI TechSprint 2026 • Problem Statement 1</div>
             <h1 class="logo">SecuAuth AI</h1>
-            <p style="font-size: 1.45rem; color: #888; max-width: 720px; margin: 0 auto;">
+            <p style="font-size: 1.45rem; color: #94a3b8; max-width: 720px; margin: 0 auto;">
                 Complete Project Structure &amp; Detailed Explainer
             </p>
         </header>
@@ -276,30 +287,36 @@
         <!-- Section 1 -->
         <div id="section-1" class="section">
             <h2><span class="section-number">1</span> Project Overview</h2>
-            <p class="detail-text" style="max-width: 880px;">
-                SecuAuth AI is a next-generation <strong>invisible continuous authentication layer</strong> designed specifically 
-                for the Indian securities market. It adds a silent biometric + cryptographic verification system that activates 
-                after traditional login (Password + OTP). Even if a hacker steals the user's credentials through advanced phishing 
-                or social engineering, the system verifies that the <strong>real investor is physically present</strong> using the 
-                device's front camera — without showing any extra steps to the legitimate user.
-            </p>
+            <div class="glass-card">
+                <p class="detail-text" style="max-width: 880px;">
+                    SecuAuth AI is a next-generation <strong>invisible continuous authentication layer</strong> designed specifically 
+                    for the Indian securities market. It adds a silent biometric + cryptographic verification system that activates 
+                    after traditional login (Password + OTP). Even if a hacker steals the user's credentials through advanced phishing 
+                    or social engineering, the system verifies that the <strong>real investor is physically present</strong> using the 
+                    device's front camera — without showing any extra steps to the legitimate user.
+                </p>
+            </div>
         </div>
 
         <!-- Section 2 -->
         <div id="section-2" class="section">
-            <h2><span class="section-number">2</span> Complete Architecture Diagram</h2>
+            <h2><span class="section-number">2</span> Complete Architecture &amp; Workflow Diagram</h2>
             <div class="diagram-container">
                 <img src="images/flow-diagram.png" alt="SecuAuth AI Complete Architecture Flow Diagram">
             </div>
-            <p style="text-align:center; color:#777; font-size:1.05rem;">
-                The diagram above shows the complete end-to-end flow from user input to threat response.
-            </p>
+            <div class="glass-card">
+                <p style="color:#94a3b8; font-size:1.05rem;">
+                    <strong>Understanding the Workflow:</strong><br>
+                    The diagram shows the complete end-to-end process: User enters credentials → Silent camera scan → Cryptographic signature generation → 
+                    Backend verification → Final decision (Access granted or Intruder alert). All steps happen in under 1.5 seconds with zero user friction.
+                </p>
+            </div>
         </div>
 
         <!-- Section 3 -->
         <div id="section-3" class="section">
             <h2><span class="section-number">3</span> The Problem We Are Solving</h2>
-            <div class="card">
+            <div class="glass-card">
                 <p class="detail-text">
                     90%+ of account takeovers in the securities market happen through stolen credentials. 
                     Even with Two-Factor Authentication (OTP), hackers use real-time phishing kits and man-in-the-middle attacks 
@@ -316,13 +333,13 @@
             
             <div class="two-column">
                 <!-- Chrome Extension -->
-                <div class="card">
+                <div class="glass-card">
                     <div class="tech-badge">FOR WEB PLATFORMS</div>
                     <h3>Chrome Extension</h3>
-                    <p style="color:#aaa; margin: 18px 0 25px;">For Broker Websites (Zerodha, Groww, Upstox, Angel One, 5Paisa, etc.)</p>
+                    <p style="color:#94a3b8; margin: 18px 0 25px;">For Broker Websites (Zerodha, Groww, Upstox, Angel One, 5Paisa, etc.)</p>
                     
                     <strong>How it Works:</strong>
-                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2;">
+                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2; color:#cbd5e1;">
                         <li>Runs completely silently in the background</li>
                         <li>Detects login or high-value transaction attempts</li>
                         <li>Uses <span class="highlight">MediaPipe Face Mesh</span> for 468 facial landmarks</li>
@@ -333,13 +350,13 @@
                 </div>
 
                 <!-- Mobile SDK -->
-                <div class="card">
+                <div class="glass-card">
                     <div class="tech-badge">FOR MOBILE APPLICATIONS</div>
                     <h3>Security SDK</h3>
-                    <p style="color:#aaa; margin: 18px 0 25px;">For Broker Mobile Apps (Android &amp; iOS)</p>
+                    <p style="color:#94a3b8; margin: 18px 0 25px;">For Broker Mobile Apps (Android &amp; iOS)</p>
                     
                     <strong>How it Works:</strong>
-                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2;">
+                    <ul style="margin-top: 16px; padding-left: 22px; line-height: 2; color:#cbd5e1;">
                         <li>Lightweight SDK that developers can easily integrate</li>
                         <li>Uses device Secure Enclave / Android Keystore</li>
                         <li>Native camera + advanced liveness detection</li>
@@ -359,27 +376,27 @@
                 <div class="flow-card">
                     <div class="step-number">01</div>
                     <h4>User Enters Credentials</h4>
-                    <p style="color:#aaa;">User enters Password + OTP normally on the broker platform.</p>
+                    <p style="color:#94a3b8;">User enters Password + OTP normally on the broker platform.</p>
                 </div>
                 <div class="flow-card">
                     <div class="step-number">02</div>
                     <h4>Silent Edge Scan Triggers</h4>
-                    <p style="color:#aaa;">While the page shows "Processing your request...", the front camera activates silently and captures facial landmarks using MediaPipe.</p>
+                    <p style="color:#94a3b8;">While the page shows "Processing your request...", the front camera activates silently and captures facial landmarks using MediaPipe.</p>
                 </div>
                 <div class="flow-card">
                     <div class="step-number">03</div>
                     <h4>Private Key Signature</h4>
-                    <p style="color:#aaa;">Facial landmarks are converted into a cryptographic signature using the device's private key stored in Secure Enclave / WebCrypto.</p>
+                    <p style="color:#94a3b8;">Facial landmarks are converted into a cryptographic signature using the device's private key stored in Secure Enclave / WebCrypto.</p>
                 </div>
                 <div class="flow-card">
                     <div class="step-number">04</div>
                     <h4>Backend Verification</h4>
-                    <p style="color:#aaa;">The backend fetches the user's registered public key and verifies the signature using ECDSA/RSA-4096. No biometric data is ever sent to the server.</p>
+                    <p style="color:#94a3b8;">The backend fetches the user's registered public key and verifies the signature using ECDSA/RSA-4096. No biometric data is ever sent to the server.</p>
                 </div>
                 <div class="flow-card">
                     <div class="step-number">05</div>
                     <h4>Decision Matrix</h4>
-                    <p style="color:#aaa;">MATCH → Access Granted<br>MISMATCH → Intruder Alert + Photo Capture</p>
+                    <p style="color:#94a3b8;">MATCH → Access Granted<br>MISMATCH → Intruder Alert + Photo Capture</p>
                 </div>
             </div>
         </div>
@@ -395,14 +412,14 @@
                     <th>Result</th>
                 </tr>
                 <tr>
-                    <td><strong style="color:#22c55e">MATCH</strong></td>
+                    <td><strong style="color:#4ade80">MATCH</strong></td>
                     <td>Signature verified + Liveness passed</td>
-                    <td style="color:#22c55e"><strong>Dashboard Access Granted</strong></td>
+                    <td style="color:#4ade80"><strong>Dashboard Access Granted</strong></td>
                 </tr>
                 <tr>
-                    <td><strong style="color:#ef4444">MISMATCH</strong></td>
+                    <td><strong style="color:#f87171">MISMATCH</strong></td>
                     <td>Deepfake / Wrong person / Hacker detected</td>
-                    <td style="color:#ef4444">
+                    <td style="color:#f87171">
                         <strong>Session Terminated</strong><br>
                         Intruder photo captured<br>
                         Urgent alert sent to real owner's device
@@ -415,13 +432,13 @@
         <div id="section-7" class="section">
             <h2><span class="section-number">7</span> Privacy &amp; Security Highlights</h2>
             <div class="two-column">
-                <div class="card">
+                <div class="glass-card">
                     <h4>No Biometric Data Sent to Server</h4>
-                    <p style="color:#aaa;">Only cryptographic signatures are transmitted. The actual face image is never sent to any server.</p>
+                    <p style="color:#94a3b8;">Only cryptographic signatures are transmitted. The actual face image is never sent to any server.</p>
                 </div>
-                <div class="card">
+                <div class="glass-card">
                     <h4>Keys Stored Locally on Device</h4>
-                    <p style="color:#aaa;">Private keys are stored in Secure Enclave / WebCrypto. The server only stores public keys.</p>
+                    <p style="color:#94a3b8;">Private keys are stored in Secure Enclave / WebCrypto. The server only stores public keys.</p>
                 </div>
             </div>
         </div>
@@ -430,13 +447,13 @@
         <div id="section-8" class="section">
             <h2><span class="section-number">8</span> Key Advantages</h2>
             <div class="two-column">
-                <div class="card">
+                <div class="glass-card">
                     <h4>Zero Friction UX</h4>
-                    <p style="color:#aaa;">Legitimate users experience no extra steps. Security runs completely in the background.</p>
+                    <p style="color:#94a3b8;">Legitimate users experience no extra steps. Security runs completely in the background.</p>
                 </div>
-                <div class="card">
+                <div class="glass-card">
                     <h4>Proactive Intruder Capture</h4>
-                    <p style="color:#aaa;">Unlike normal blocks, the system captures photographic evidence of the hacker.</p>
+                    <p style="color:#94a3b8;">Unlike normal blocks, the system captures photographic evidence of the hacker.</p>
                 </div>
             </div>
         </div>
@@ -444,7 +461,7 @@
         <!-- Section 9 -->
         <div id="section-9" class="section">
             <h2><span class="section-number">9</span> MVP Development Plan</h2>
-            <div class="card">
+            <div class="glass-card">
                 <p class="detail-text">
                     For the hackathon and initial demo, we will build:<br><br>
                     • A mock broker login website<br>
